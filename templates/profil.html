@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Profilim</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #3f51b5, #5c6bc0);
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .profil-kart {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 30px 40px;
+            border-radius: 16px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 350px;
+        }
+
+        .profil-kart h2 {
+            margin-bottom: 20px;
+            color: #ffe082;
+        }
+
+        .profil-kart p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .geri-btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .geri-btn:hover {
+            background-color: #fb8c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="profil-kart">
+        <h2>👤 Profilim</h2>
+        <p><strong>Kullanıcı Adı:</strong> {{ user.username }}</p>
+        <p><strong>Kayıt Tarihi:</strong> {{ user.created_at.strftime('%d.%m.%Y %H:%M') }}</p>
+        <a href="{{ url_for('animeleri_listele') }}" class="geri-btn">🔙 Ana Sayfaya Dön</a>
+    </div>
+</body>
+</html>

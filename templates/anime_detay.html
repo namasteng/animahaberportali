@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ anime.anime_adi }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #3f51b5, #5c6bc0);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .detay-box {
+            background-color: rgba(0, 0, 0, 0.3); /* transparan arka plan */
+            max-width: 800px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .detay-box img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .detay-box h2 {
+            color: #ffe082;
+            margin-bottom: 15px;
+        }
+
+        .detay-box p {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .geri-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 24px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .geri-btn:hover {
+            background-color: #fb8c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="detay-box">
+        <img src="{{ anime.anime_gorsel_link }}" alt="{{ anime.anime_adi }}">
+        <h2>{{ anime.anime_adi }}</h2>
+        <p>{{ anime.anime_paragraf }}</p>
+        <a href="{{ url_for('animeleri_listele') }}" class="geri-btn">🔙 Geri Dön</a>
+    </div>
+</body>
+</html>

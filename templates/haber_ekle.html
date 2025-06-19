@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Haber Ekle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #3f51b5, #5c6bc0);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            color: #333;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff9800;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ffa726;
+        }
+
+        a {
+            color: #ffe082;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Yeni Anime Haberi Ekle</h2>
+    <form method="POST">
+        <label>Anime Adı:</label><br>
+        <input type="text" name="anime_adi"><br><br>
+
+        <label>Görsel Linki:</label><br>
+        <input type="text" name="anime_gorsel_link"><br><br>
+
+        <label>Paragraf:</label><br>
+        <textarea name="anime_paragraf"></textarea><br><br>
+
+        <button type="submit">Haberi Ekle</button>
+    </form>
+    <a href="{{ url_for('admin_panel') }}">← Admin Paneline Dön</a>
+</body>
+</html>

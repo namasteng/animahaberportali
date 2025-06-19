@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ana Sayfa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #3f51b5, #5c6bc0);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #283593;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #fff59d;
+        }
+
+        .navbar .nav-buttons a {
+            background-color: #ff9800;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .navbar .nav-buttons a:hover {
+            background-color: #fb8c00;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 80px auto 40px;
+            padding: 20px;
+        }
+
+        .haber {
+            background-color: rgba(255,255,255,0.08);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.3);
+        }
+
+        .haber img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .haber h3 {
+            margin-top: 10px;
+            color: #ffe082;
+        }
+
+        .btn-devam {
+        background-color: transparent;
+        border: 2px solid #ffb300;
+        color: #ffb300;
+        padding: 10px 14px;
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 12px;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .btn-devam:hover {
+        background-color: #ffb300;
+        color: white;
+        box-shadow: 0 0 10px #ffb300aa;
+        transform: translateY(-2px);
+    }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>Anime Haber Portalı</h2>
+        <div class="nav-buttons">
+            {% if 'user_id' in session %}
+                <span style="margin-right: 10px;">👋 Merhaba, <strong>{{ session['username'] }}</strong></span>
+                <a href="{{ url_for('profil') }}">Profilim</a>
+                <a href="{{ url_for('logout') }}">Çıkış Yap</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Giriş Yap</a>
+                <a href="{{ url_for('register') }}">Kayıt Ol</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+    <div class="cards" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; justify-content: center;">
+        {% for haber in animeler %}
+        <div class="haber" style="background-color: rgba(255,255,255,0.08); padding: 20px; border-radius: 12px; box-shadow: 0 0 8px rgba(0,0,0,0.3); display: flex; flex-direction: column; justify-content: space-between;">
+            
+            {% if haber.anime_gorsel_link %}
+            <img src="{{ haber.anime_gorsel_link }}" alt="Haber Görseli" style="width: 100%; border-radius: 10px; height: auto;">
+            {% endif %}
+
+            <h3 style="color: #ffe082; margin-top: 10px;">{{ haber.anime_adi }}</h3>
+
+            <p>
+                {{ haber.anime_paragraf[:150] }}{% if haber.anime_paragraf|length > 150 %}...{% endif %}
+            </p>
+            <a href="{{ url_for('anime_detay', anime_id=haber.id) }}" class="btn-devam" style="margin-top: auto; text-align: center;">Devamını Oku →</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        {% if toplam_sayfa > 1 %}
+            {% for s in range(1, toplam_sayfa + 1) %}
+                {% if s == sayfa %}
+                    <span style="padding: 8px 14px; margin: 5px; background-color: #ff9800; border-radius: 6px; font-weight: bold;">
+                        {{ s }}
+                    </span>
+                {% else %}
+                    <a href="{{ url_for('animeleri_listele', sayfa=s) }}" style="padding: 8px 14px; margin: 5px; background-color: #fff59d; border-radius: 6px; text-decoration: none; color: black;">
+                        {{ s }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>
