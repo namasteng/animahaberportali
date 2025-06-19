@@ -47,6 +47,10 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
 
+@app.route('/')
+def yonlendir():
+    return redirect(url_for('animeleri_listele'))
+
 @app.route('/animeler')
 def animeleri_listele():
     try:
